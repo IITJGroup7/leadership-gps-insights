@@ -77,6 +77,15 @@ export const sentimentData = [
   { month: 'Jun', sentiment: 8.5 }
 ];
 
+export const feedbackTrends = [
+  { month: 'Jan', value: 7.2 },
+  { month: 'Feb', value: 7.8 },
+  { month: 'Mar', value: 8.1 },
+  { month: 'Apr', value: 7.9 },
+  { month: 'May', value: 8.2 },
+  { month: 'Jun', value: 8.5 }
+];
+
 export const themeData = [
   { theme: 'Communication', mentions: 15, trend: 'up' },
   { theme: 'Leadership', mentions: 12, trend: 'up' },
