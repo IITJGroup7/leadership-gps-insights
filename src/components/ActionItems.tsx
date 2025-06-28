@@ -33,6 +33,12 @@ export function ActionItems() {
     setShowForm(false);
   };
 
+  const handleComplete = (itemId: number) => {
+    setItems(items.map(item => 
+      item.id === itemId ? { ...item, completed: !item.completed } : item
+    ));
+  };
+
   return (
     <Card className="shadow-sm border-slate-200">
       <CardHeader className="flex flex-row items-center justify-between">
@@ -85,7 +91,8 @@ export function ActionItems() {
               <Checkbox 
                 checked={item.completed}
                 className="mt-1"
-                disabled
+                disabled 
+                onCheckedChange={() => handleComplete(item.id)}
               />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between mb-2">
@@ -109,7 +116,12 @@ export function ActionItems() {
                     <span className="text-sm text-slate-500">Due: {item.dueDate}</span>
                   </div>
                   {!item.completed && (
-                    <Button variant="ghost" size="sm" className="text-blue-600 hover:text-blue-700" disabled>
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="text-blue-600 hover:text-blue-700"
+                      onClick={() => handleComplete(item.id)}
+                    >
                       Complete
                     </Button>
                   )}
