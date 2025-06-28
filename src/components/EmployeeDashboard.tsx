@@ -1,10 +1,10 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { MessageSquare, Users, Clock, CheckCircle, Star } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
+import { employeeDashboardStats, feedbackRequests, peerFeedbackOpportunities } from '@/lib/data';
 
 export function EmployeeDashboard() {
   const { user } = useAuth();
@@ -23,7 +23,7 @@ export function EmployeeDashboard() {
               <MessageSquare className="h-8 w-8 text-blue-500" />
               <div>
                 <p className="text-sm font-medium text-slate-600">Feedback Given</p>
-                <p className="text-2xl font-bold">12</p>
+                <p className="text-2xl font-bold">{employeeDashboardStats.feedbackGiven}</p>
               </div>
             </div>
           </CardContent>
@@ -35,7 +35,7 @@ export function EmployeeDashboard() {
               <Clock className="h-8 w-8 text-orange-500" />
               <div>
                 <p className="text-sm font-medium text-slate-600">Pending Requests</p>
-                <p className="text-2xl font-bold">3</p>
+                <p className="text-2xl font-bold">{employeeDashboardStats.pendingRequests}</p>
               </div>
             </div>
           </CardContent>
@@ -47,7 +47,7 @@ export function EmployeeDashboard() {
               <Users className="h-8 w-8 text-green-500" />
               <div>
                 <p className="text-sm font-medium text-slate-600">Peer Reviews</p>
-                <p className="text-2xl font-bold">8</p>
+                <p className="text-2xl font-bold">{employeeDashboardStats.peerReviews}</p>
               </div>
             </div>
           </CardContent>
@@ -59,7 +59,7 @@ export function EmployeeDashboard() {
               <Star className="h-8 w-8 text-purple-500" />
               <div>
                 <p className="text-sm font-medium text-slate-600">Your Rating</p>
-                <p className="text-2xl font-bold">4.3</p>
+                <p className="text-2xl font-bold">{employeeDashboardStats.yourRating}</p>
               </div>
             </div>
           </CardContent>
@@ -80,11 +80,7 @@ export function EmployeeDashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {[
-                  { requester: "Sarah Johnson (Manager)", topic: "Q4 Performance Review", dueDate: "Dec 15, 2024", urgent: true },
-                  { requester: "Mike Torres (Peer)", topic: "Project Collaboration", dueDate: "Dec 18, 2024", urgent: false },
-                  { requester: "Sarah Johnson (Manager)", topic: "Leadership Skills", dueDate: "Dec 20, 2024", urgent: false },
-                ].map((request, index) => (
+                {feedbackRequests.map((request, index) => (
                   <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
                     <div>
                       <h3 className="font-medium">{request.topic}</h3>
@@ -144,11 +140,7 @@ export function EmployeeDashboard() {
               <div className="space-y-4">
                 <p className="text-slate-600">Provide feedback to your colleagues.</p>
                 <div className="space-y-3">
-                  {[
-                    { colleague: "Emily Rodriguez", project: "Mobile App Redesign", collaboration: "High" },
-                    { colleague: "David Kim", project: "API Integration", collaboration: "Medium" },
-                    { colleague: "Lisa Chang", project: "User Research", collaboration: "High" },
-                  ].map((peer, index) => (
+                  {peerFeedbackOpportunities.map((peer, index) => (
                     <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
                       <div>
                         <h3 className="font-medium">{peer.colleague}</h3>

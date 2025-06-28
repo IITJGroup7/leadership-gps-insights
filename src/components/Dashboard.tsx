@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { TeamOverview } from '@/components/TeamOverview';
@@ -6,6 +5,7 @@ import { FeedbackTrends } from '@/components/FeedbackTrends';
 import { ActionItems } from '@/components/ActionItems';
 import { SmartNudges } from '@/components/SmartNudges';
 import { useAuth } from '@/contexts/AuthContext';
+import { dashboardMetrics } from '@/lib/data';
 
 export function Dashboard() {
   const { user } = useAuth();
@@ -23,8 +23,8 @@ export function Dashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-blue-100 text-sm font-medium">Team Sentiment</p>
-                <p className="text-3xl font-bold">8.2/10</p>
-                <p className="text-blue-100 text-sm">↗ +0.5 this week</p>
+                <p className="text-3xl font-bold">{dashboardMetrics.teamSentiment.value}/10</p>
+                <p className="text-blue-100 text-sm">↗ {dashboardMetrics.teamSentiment.change} this week</p>
               </div>
               <div className="w-12 h-12 bg-blue-400/30 rounded-full flex items-center justify-center">
                 <span className="text-2xl">😊</span>
@@ -38,7 +38,7 @@ export function Dashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-green-100 text-sm font-medium">Feedback Collected</p>
-                <p className="text-3xl font-bold">24</p>
+                <p className="text-3xl font-bold">{dashboardMetrics.feedbackCollected}</p>
                 <p className="text-green-100 text-sm">This week</p>
               </div>
               <div className="w-12 h-12 bg-green-400/30 rounded-full flex items-center justify-center">
@@ -53,7 +53,7 @@ export function Dashboard() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-purple-100 text-sm font-medium">Action Items</p>
-                <p className="text-3xl font-bold">7</p>
+                <p className="text-3xl font-bold">{dashboardMetrics.actionItemsPending}</p>
                 <p className="text-purple-100 text-sm">Pending</p>
               </div>
               <div className="w-12 h-12 bg-purple-400/30 rounded-full flex items-center justify-center">

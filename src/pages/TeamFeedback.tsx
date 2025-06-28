@@ -1,9 +1,9 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { MessageSquare, Users, TrendingUp, Clock } from 'lucide-react';
+import { teamFeedbackStats, recentFeedback, topStrengths, growthAreas } from '@/lib/data';
 
 export default function TeamFeedback() {
   return (
@@ -20,7 +20,7 @@ export default function TeamFeedback() {
               <MessageSquare className="h-8 w-8 text-blue-500" />
               <div>
                 <p className="text-sm font-medium text-slate-600">Total Feedback</p>
-                <p className="text-2xl font-bold">142</p>
+                <p className="text-2xl font-bold">{teamFeedbackStats.totalFeedback}</p>
               </div>
             </div>
           </CardContent>
@@ -32,7 +32,7 @@ export default function TeamFeedback() {
               <Users className="h-8 w-8 text-green-500" />
               <div>
                 <p className="text-sm font-medium text-slate-600">Team Members</p>
-                <p className="text-2xl font-bold">24</p>
+                <p className="text-2xl font-bold">{teamFeedbackStats.teamMembers}</p>
               </div>
             </div>
           </CardContent>
@@ -44,7 +44,7 @@ export default function TeamFeedback() {
               <TrendingUp className="h-8 w-8 text-purple-500" />
               <div>
                 <p className="text-sm font-medium text-slate-600">Avg Rating</p>
-                <p className="text-2xl font-bold">4.2</p>
+                <p className="text-2xl font-bold">{teamFeedbackStats.avgRating}</p>
               </div>
             </div>
           </CardContent>
@@ -56,7 +56,7 @@ export default function TeamFeedback() {
               <Clock className="h-8 w-8 text-orange-500" />
               <div>
                 <p className="text-sm font-medium text-slate-600">Pending</p>
-                <p className="text-2xl font-bold">8</p>
+                <p className="text-2xl font-bold">{teamFeedbackStats.pending}</p>
               </div>
             </div>
           </CardContent>
@@ -102,11 +102,7 @@ export default function TeamFeedback() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {[
-                    { name: "Alex Chen", topic: "Leadership", rating: 4.5, time: "2 hours ago" },
-                    { name: "Sarah Johnson", topic: "Communication", rating: 4.2, time: "5 hours ago" },
-                    { name: "Mike Torres", topic: "Technical", rating: 4.8, time: "1 day ago" },
-                  ].map((feedback, index) => (
+                  {recentFeedback.map((feedback, index) => (
                     <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
                       <div>
                         <p className="font-medium">{feedback.name}</p>
@@ -134,35 +130,23 @@ export default function TeamFeedback() {
                 <div className="space-y-4">
                   <h3 className="font-semibold">Top Strengths</h3>
                   <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span>Technical Expertise</span>
-                      <span className="text-green-600 font-medium">92%</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Team Collaboration</span>
-                      <span className="text-green-600 font-medium">88%</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Problem Solving</span>
-                      <span className="text-green-600 font-medium">85%</span>
-                    </div>
+                    {topStrengths.map((strength, index) => (
+                      <div key={index} className="flex justify-between items-center">
+                        <span>{strength.label}</span>
+                        <span className="text-green-600 font-medium">{strength.percent}%</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
                 <div className="space-y-4">
                   <h3 className="font-semibold">Growth Areas</h3>
                   <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span>Public Speaking</span>
-                      <span className="text-orange-600 font-medium">68%</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Delegation</span>
-                      <span className="text-orange-600 font-medium">72%</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                      <span>Time Management</span>
-                      <span className="text-orange-600 font-medium">75%</span>
-                    </div>
+                    {growthAreas.map((area, index) => (
+                      <div key={index} className="flex justify-between items-center">
+                        <span>{area.label}</span>
+                        <span className="text-orange-600 font-medium">{area.percent}%</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

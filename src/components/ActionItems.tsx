@@ -1,44 +1,9 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
-
-const actionItems = [
-  {
-    id: 1,
-    title: "Schedule 1:1 with Alex about communication skills",
-    priority: "high",
-    dueDate: "Today",
-    type: "coaching",
-    completed: false
-  },
-  {
-    id: 2,
-    title: "Follow up on Maya's time management goals",
-    priority: "medium",
-    dueDate: "Tomorrow",
-    type: "follow-up",
-    completed: false
-  },
-  {
-    id: 3,
-    title: "Team sync on project clarity (based on feedback)",
-    priority: "high",
-    dueDate: "This week",
-    type: "team",
-    completed: false
-  },
-  {
-    id: 4,
-    title: "Recognize Jordan's innovative campaign ideas",
-    priority: "low",
-    dueDate: "This week",
-    type: "recognition",
-    completed: true
-  }
-];
+import { actionItems } from '@/lib/data';
 
 export function ActionItems() {
   return (

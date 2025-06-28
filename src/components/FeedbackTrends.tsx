@@ -1,24 +1,7 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from 'recharts';
-
-const sentimentData = [
-  { month: 'Jan', sentiment: 7.2 },
-  { month: 'Feb', sentiment: 7.8 },
-  { month: 'Mar', sentiment: 8.1 },
-  { month: 'Apr', sentiment: 7.9 },
-  { month: 'May', sentiment: 8.2 },
-  { month: 'Jun', sentiment: 8.5 }
-];
-
-const themeData = [
-  { theme: 'Communication', mentions: 15, trend: 'up' },
-  { theme: 'Leadership', mentions: 12, trend: 'up' },
-  { theme: 'Technical Skills', mentions: 18, trend: 'stable' },
-  { theme: 'Collaboration', mentions: 14, trend: 'up' },
-  { theme: 'Time Management', mentions: 8, trend: 'down' }
-];
+import { sentimentData, themeData } from '@/lib/data';
 
 export function FeedbackTrends() {
   return (

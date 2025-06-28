@@ -1,47 +1,8 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-
-const nudges = [
-  {
-    id: 1,
-    type: "insight",
-    title: "Communication Pattern Detected",
-    message: "Your team's feedback shows a 15% increase in requests for clearer direction. Consider scheduling a team alignment meeting.",
-    action: "Schedule Team Sync",
-    priority: "medium",
-    icon: "💡"
-  },
-  {
-    id: 2,
-    type: "celebration",
-    title: "Leadership Growth Spotted!",
-    message: "You've received 3 mentions for improved mentoring this week. Your coaching approach is making an impact!",
-    action: "View Details",
-    priority: "low",
-    icon: "🎉"
-  },
-  {
-    id: 3,
-    type: "coaching",
-    title: "Micro-Coaching Tip",
-    message: "When giving feedback on 'time management,' try the STAR method: Situation, Task, Action, Result for more specific guidance.",
-    action: "Learn More",
-    priority: "low",
-    icon: "🧠"
-  },
-  {
-    id: 4,
-    type: "urgent",
-    title: "Engagement Alert",
-    message: "Jordan's engagement score dropped 20% this week. Previous feedback mentioned workload concerns - time for a check-in?",
-    action: "Schedule 1:1",
-    priority: "high",
-    icon: "⚠️"
-  }
-];
+import { nudges } from '@/lib/data';
 
 export function SmartNudges() {
   return (

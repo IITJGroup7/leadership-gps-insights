@@ -1,38 +1,8 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-
-const teamMembers = [
-  {
-    name: "Alex Chen",
-    role: "Senior Developer",
-    sentiment: 8.5,
-    recentFeedback: "Excellent technical leadership on the API project",
-    strengths: ["Technical Skills", "Mentoring"],
-    growthAreas: ["Communication"],
-    initials: "AC"
-  },
-  {
-    name: "Maya Patel",
-    role: "Product Designer",
-    sentiment: 9.2,
-    recentFeedback: "Outstanding collaboration with cross-functional teams",
-    strengths: ["Creativity", "Collaboration"],
-    growthAreas: ["Time Management"],
-    initials: "MP"
-  },
-  {
-    name: "Jordan Smith",
-    role: "Marketing Specialist",
-    sentiment: 7.8,
-    recentFeedback: "Great campaign ideas, could improve on execution speed",
-    strengths: ["Strategy", "Innovation"],
-    growthAreas: ["Execution", "Prioritization"],
-    initials: "JS"
-  }
-];
+import { teamMembers } from '@/lib/data';
 
 export function TeamOverview() {
   return (

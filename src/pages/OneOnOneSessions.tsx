@@ -1,9 +1,9 @@
-
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Calendar, Clock, User, CheckCircle, AlertCircle } from 'lucide-react';
+import { oneOnOneStats, upcomingSessions, sessionHistoryStats, recentSessions } from '@/lib/data';
 
 export default function OneOnOneSessions() {
   return (
@@ -20,7 +20,7 @@ export default function OneOnOneSessions() {
               <Calendar className="h-8 w-8 text-blue-500" />
               <div>
                 <p className="text-sm font-medium text-slate-600">This Week</p>
-                <p className="text-2xl font-bold">8</p>
+                <p className="text-2xl font-bold">{oneOnOneStats.thisWeek}</p>
               </div>
             </div>
           </CardContent>
@@ -32,7 +32,7 @@ export default function OneOnOneSessions() {
               <CheckCircle className="h-8 w-8 text-green-500" />
               <div>
                 <p className="text-sm font-medium text-slate-600">Completed</p>
-                <p className="text-2xl font-bold">5</p>
+                <p className="text-2xl font-bold">{oneOnOneStats.completed}</p>
               </div>
             </div>
           </CardContent>
@@ -44,7 +44,7 @@ export default function OneOnOneSessions() {
               <Clock className="h-8 w-8 text-orange-500" />
               <div>
                 <p className="text-sm font-medium text-slate-600">Upcoming</p>
-                <p className="text-2xl font-bold">3</p>
+                <p className="text-2xl font-bold">{oneOnOneStats.upcoming}</p>
               </div>
             </div>
           </CardContent>
@@ -56,7 +56,7 @@ export default function OneOnOneSessions() {
               <AlertCircle className="h-8 w-8 text-red-500" />
               <div>
                 <p className="text-sm font-medium text-slate-600">Overdue</p>
-                <p className="text-2xl font-bold">2</p>
+                <p className="text-2xl font-bold">{oneOnOneStats.overdue}</p>
               </div>
             </div>
           </CardContent>
@@ -117,11 +117,7 @@ export default function OneOnOneSessions() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-4">
-                  {[
-                    { name: "Alex Chen", date: "Today", time: "2:00 PM", type: "Regular Check-in", status: "confirmed" },
-                    { name: "Sarah Johnson", date: "Tomorrow", time: "10:30 AM", type: "Goal Setting", status: "pending" },
-                    { name: "Mike Torres", date: "Friday", time: "3:30 PM", type: "Performance Review", status: "confirmed" },
-                  ].map((session, index) => (
+                  {upcomingSessions.map((session, index) => (
                     <div key={index} className="flex items-center justify-between p-4 border rounded-lg">
                       <div className="flex items-center space-x-3">
                         <User className="h-8 w-8 text-slate-400" />
@@ -214,25 +210,21 @@ export default function OneOnOneSessions() {
               <div className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="text-center p-4 bg-blue-50 rounded-lg">
-                    <p className="text-2xl font-bold text-blue-600">24</p>
+                    <p className="text-2xl font-bold text-blue-600">{sessionHistoryStats.sessionsThisMonth}</p>
                     <p className="text-sm text-slate-600">Sessions This Month</p>
                   </div>
                   <div className="text-center p-4 bg-green-50 rounded-lg">
-                    <p className="text-2xl font-bold text-green-600">4.6</p>
+                    <p className="text-2xl font-bold text-green-600">{sessionHistoryStats.avgSessionRating}</p>
                     <p className="text-sm text-slate-600">Avg Session Rating</p>
                   </div>
                   <div className="text-center p-4 bg-purple-50 rounded-lg">
-                    <p className="text-2xl font-bold text-purple-600">18</p>
+                    <p className="text-2xl font-bold text-purple-600">{sessionHistoryStats.actionItemsCreated}</p>
                     <p className="text-sm text-slate-600">Action Items Created</p>
                   </div>
                 </div>
                 <div className="space-y-4">
                   <h3 className="font-semibold">Recent Sessions</h3>
-                  {[
-                    { name: "Alex Chen", date: "Dec 15", type: "Performance Review", outcome: "2 goals set, promotion discussion" },
-                    { name: "Sarah Johnson", date: "Dec 14", type: "Regular Check-in", outcome: "Project feedback, skill development plan" },
-                    { name: "Mike Torres", date: "Dec 12", type: "Goal Setting", outcome: "Q1 objectives defined, mentoring assignment" },
-                  ].map((session, index) => (
+                  {recentSessions.map((session, index) => (
                     <div key={index} className="p-4 border rounded-lg">
                       <div className="flex justify-between items-start mb-2">
                         <div>
