@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -6,6 +6,33 @@ import { Calendar, Clock, User, CheckCircle, AlertCircle } from 'lucide-react';
 import { oneOnOneStats, upcomingSessions, sessionHistoryStats, recentSessions } from '@/lib/data';
 
 export default function OneOnOneSessions() {
+  const [scheduleForm, setScheduleForm] = useState({
+    teamMember: '',
+    date: '',
+    time: '',
+    sessionType: 'Regular Check-in'
+  });
+
+  const handleScheduleSession = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!scheduleForm.teamMember || !scheduleForm.date || !scheduleForm.time) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
+    // Show success message
+    alert(`Session scheduled successfully!\n\nTeam Member: ${scheduleForm.teamMember}\nDate: ${scheduleForm.date}\nTime: ${scheduleForm.time}\nType: ${scheduleForm.sessionType}\n\nCheck your calendar for the meeting invitation.`);
+    
+    // Reset form
+    setScheduleForm({
+      teamMember: '',
+      date: '',
+      time: '',
+      sessionType: 'Regular Check-in'
+    });
+  };
+
   return (
     <div className="p-8 space-y-8 max-w-7xl mx-auto">
       <div className="mb-8">
@@ -77,37 +104,60 @@ export default function OneOnOneSessions() {
                 <CardTitle>Quick Schedule</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Team Member</label>
-                  <select className="w-full p-3 border rounded-lg">
-                    <option>Select team member...</option>
-                    <option>Alex Chen - Engineering</option>
-                    <option>Sarah Johnson - Design</option>
-                    <option>Mike Torres - Product</option>
-                    <option>Lisa Wang - Marketing</option>
-                  </select>
-                </div>
-                <div className="grid grid-cols-2 gap-4">
+                <form onSubmit={handleScheduleSession} className="space-y-4">
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Date</label>
-                    <input type="date" className="w-full p-3 border rounded-lg" />
+                    <label className="text-sm font-medium">Team Member</label>
+                    <select 
+                      className="w-full p-3 border rounded-lg"
+                      value={scheduleForm.teamMember}
+                      onChange={(e) => setScheduleForm(prev => ({ ...prev, teamMember: e.target.value }))}
+                      required
+                    >
+                      <option value="">Select team member...</option>
+                      <option value="Alex Chen - Engineering">Alex Chen - Engineering</option>
+                      <option value="Sarah Johnson - Design">Sarah Johnson - Design</option>
+                      <option value="Mike Torres - Product">Mike Torres - Product</option>
+                      <option value="Lisa Wang - Marketing">Lisa Wang - Marketing</option>
+                    </select>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">Date</label>
+                      <input 
+                        type="date" 
+                        className="w-full p-3 border rounded-lg"
+                        value={scheduleForm.date}
+                        onChange={(e) => setScheduleForm(prev => ({ ...prev, date: e.target.value }))}
+                        required
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-sm font-medium">Time</label>
+                      <input 
+                        type="time" 
+                        className="w-full p-3 border rounded-lg"
+                        value={scheduleForm.time}
+                        onChange={(e) => setScheduleForm(prev => ({ ...prev, time: e.target.value }))}
+                        required
+                      />
+                    </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-medium">Time</label>
-                    <input type="time" className="w-full p-3 border rounded-lg" />
+                    <label className="text-sm font-medium">Session Type</label>
+                    <select 
+                      className="w-full p-3 border rounded-lg"
+                      value={scheduleForm.sessionType}
+                      onChange={(e) => setScheduleForm(prev => ({ ...prev, sessionType: e.target.value }))}
+                    >
+                      <option value="Regular Check-in">Regular Check-in</option>
+                      <option value="Performance Review">Performance Review</option>
+                      <option value="Goal Setting">Goal Setting</option>
+                      <option value="Career Development">Career Development</option>
+                      <option value="Feedback Discussion">Feedback Discussion</option>
+                    </select>
                   </div>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-medium">Session Type</label>
-                  <select className="w-full p-3 border rounded-lg">
-                    <option>Regular Check-in</option>
-                    <option>Performance Review</option>
-                    <option>Goal Setting</option>
-                    <option>Career Development</option>
-                    <option>Feedback Discussion</option>
-                  </select>
-                </div>
-                <Button className="w-full">Schedule Session</Button>
+                  <Button type="submit" className="w-full">Schedule Session</Button>
+                </form>
               </CardContent>
             </Card>
 

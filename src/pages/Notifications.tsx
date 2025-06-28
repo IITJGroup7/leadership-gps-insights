@@ -1,10 +1,24 @@
-
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Bell, MessageSquare, Calendar, TrendingUp, User, CheckCircle } from 'lucide-react';
 
 export default function Notifications() {
+  const navigate = useNavigate();
+
+  const handleScheduleNow = () => {
+    navigate('/sessions');
+  };
+
+  const handleShareUpdate = () => {
+    alert('Opening team update composer...\n\nShare this success story with your team!');
+  };
+
+  const handleScheduleFollowUp = () => {
+    navigate('/sessions');
+  };
+
   return (
     <div className="p-8 space-y-8 max-w-7xl mx-auto">
       <div className="mb-8">
@@ -155,7 +169,9 @@ export default function Notifications() {
                     <p className="text-sm text-slate-600 mt-1">
                       You haven't had a 1:1 with Lisa Wang in 3 weeks. Consider scheduling one this week.
                     </p>
-                    <Button variant="outline" size="sm" className="mt-2">Schedule Now</Button>
+                    <Button variant="outline" size="sm" className="mt-2" onClick={handleScheduleNow}>
+                      Schedule Now
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -168,7 +184,9 @@ export default function Notifications() {
                     <p className="text-sm text-slate-600 mt-1">
                       Your team's recent project received outstanding feedback. Share this win!
                     </p>
-                    <Button variant="outline" size="sm" className="mt-2">Share Update</Button>
+                    <Button variant="outline" size="sm" className="mt-2" onClick={handleShareUpdate}>
+                      Share Update
+                    </Button>
                   </div>
                 </div>
               </div>
@@ -181,7 +199,9 @@ export default function Notifications() {
                     <p className="text-sm text-slate-600 mt-1">
                       Alex Chen mentioned communication challenges. Consider a follow-up discussion.
                     </p>
-                    <Button variant="outline" size="sm" className="mt-2">Schedule Follow-up</Button>
+                    <Button variant="outline" size="sm" className="mt-2" onClick={handleScheduleFollowUp}>
+                      Schedule Follow-up
+                    </Button>
                   </div>
                 </div>
               </div>
